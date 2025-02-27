@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const corsOptions = {
   origin: [
-    "http://localhost:5174",
+    "http://localhost:5173",
     "https://second-chance-ff8xmyxfu-neilseneasows-projects.vercel.app",
   ], // Added the new origin
 };

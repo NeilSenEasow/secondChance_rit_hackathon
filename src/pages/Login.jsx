@@ -43,7 +43,7 @@ const Login = () => {
         console.log('Login successful, calling login function with:', data.token, data.user);
         // Store the token and user data
         login(data.token, data.user);
-        navigate('/');
+        navigate('/profile');
       } else {
         setError(data.message);
       }

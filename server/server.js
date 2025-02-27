@@ -220,6 +220,25 @@ app.post("/add-product", authenticateToken, upload.single('image'), async (req, 
   }
 });
 
+app.get("/add-product", authenticateToken, async (req, res) => {
+  try {
+    const products = await Product.find({ user: req.user.id }); // Retrieve products for the authenticated user
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: "Error retrieving products" });
+  }
+});
+
+// New endpoint to retrieve products for the authenticated user
+app.get("/user-products", authenticateToken, async (req, res) => {
+  try {
+    const products = await Product.find({ user: req.user.id }); // Find products by user ID
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: "Error retrieving products" });
+  }
+});
+
 app.listen(5000, () => {
   console.log("Server started at port 5000");
 });

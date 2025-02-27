@@ -13,10 +13,32 @@ const Profile = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       setUserProfile(user);
+      fetchUserProducts(user.id); // Fetch user products
     } else {
       navigate('/login');
     }
   }, [navigate]);
+
+  const fetchUserProducts = async (userId) => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch("http://localhost:5000/user-products", {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const products = await response.json();
+        setUserListings(products);
+      } else {
+        console.error("Failed to fetch user products:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching user products:", error);
+    }
+  };
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -157,7 +179,7 @@ const Profile = () => {
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {userListings.map(product => (
-                    <ProductCard key={product.id} product={product} />
+                    <ProductCard key={product._id} product={product} />
                   ))}
                 </div>
               )}

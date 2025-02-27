@@ -1,8 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Heart } from 'lucide-react';
+import { Heart, ShoppingCart } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 
 const ProductCard = ({ product }) => {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (e) => {
+    e.preventDefault(); // Prevent navigation when clicking the button
+    addToCart(product);
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
       <Link to={`/product/${product.id}`}>
@@ -24,9 +32,19 @@ const ProductCard = ({ product }) => {
         </Link>
         <p className="text-lg font-bold text-gray-900 mb-2">${product.price}</p>
         
-        <div className="flex justify-between items-center text-sm text-gray-500">
-          <span>{product.location}</span>
-          <span>{product.createdAt}</span>
+        <div className="flex justify-between items-center">
+          <div className="text-sm text-gray-500">
+            <span>{product.location}</span>
+            <span className="mx-2">•</span>
+            <span>{product.createdAt}</span>
+          </div>
+          <button
+            onClick={handleAddToCart}
+            className="flex items-center space-x-1 bg-indigo-600 text-white px-3 py-1 rounded-md hover:bg-indigo-700 transition-colors duration-200"
+          >
+            <ShoppingCart className="h-4 w-4" />
+            <span>Add</span>
+          </button>
         </div>
       </div>
     </div>

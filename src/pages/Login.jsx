@@ -17,27 +17,26 @@ const Login = () => {
     setLoading(true);
     
     try {
-      // In a real app, you would make an API call to your backend
-      // For now, we'll simulate a successful login with mock data
-      setTimeout(() => {
-        // Simulate successful login
-        if (email === 'demo@example.com' && password === 'password') {
-          const mockToken = 'mock-jwt-token';
-          const mockUser = {
-            id: '101',
-            name: 'Demo User',
-            email: 'demo@example.com'
-          };
-          
-          login(mockToken, mockUser);
-          navigate('/');
-        } else {
-          setError('Invalid email or password');
-        }
-        setLoading(false);
-      }, 1000);
+      const response = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Store the token and user data
+        login(data.token, data.user);
+        navigate('/profile'); // Redirect to the profile page
+      } else {
+        setError(data.message);
+      }
     } catch (err) {
       setError('An error occurred during login');
+    } finally {
       setLoading(false);
     }
   };
@@ -80,9 +79,6 @@ const Login = () => {
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               required
             />
-            <p className="mt-1 text-sm text-gray-500">
-              Demo credentials: demo@example.com / password
-            </p>
           </div>
           
           <button

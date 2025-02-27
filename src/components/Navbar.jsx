@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, ShoppingBag, User, LogOut } from 'lucide-react';
+import { Search, ShoppingBag, User, LogOut, ShoppingCart, Info, Store, LogIn, UserPlus, Home } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 
 const Navbar = () => {
@@ -26,26 +26,53 @@ const Navbar = () => {
             />
           </div>
           
-          <div className="flex items-center">
+          <div className="flex items-center space-x-6">
+            <Link to="/" className="flex items-center text-gray-700 hover:text-indigo-600">
+              <Home className="h-5 w-5 mr-1" />
+              <span>Home</span>
+            </Link>
+
+            <Link to="/about" className="flex items-center text-gray-700 hover:text-indigo-600">
+              <Info className="h-5 w-5 mr-1" />
+              <span>About</span>
+            </Link>
+            
+            <Link to="/become-seller" className="flex items-center text-gray-700 hover:text-indigo-600">
+              <Store className="h-5 w-5 mr-1" />
+              <span>Become a Seller</span>
+            </Link>
+
+            <Link to="/cart" className="flex items-center text-gray-700 hover:text-indigo-600">
+              <ShoppingCart className="h-5 w-5 mr-1" />
+              <span>Cart</span>
+            </Link>
+
             {isAuthenticated ? (
               <>
-                <Link to="/add-product" className="px-4 py-2 rounded-md bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700">
-                  Sell Item
+                <Link to="/add-product" className="flex items-center text-gray-700 hover:text-indigo-600">
+                  <ShoppingBag className="h-5 w-5 mr-1" />
+                  <span>Sell Item</span>
                 </Link>
-                <Link to="/profile" className="ml-4">
-                  <User className="h-6 w-6 text-gray-600 hover:text-indigo-600" />
+                <Link to="/profile" className="flex items-center text-gray-700 hover:text-indigo-600">
+                  <User className="h-5 w-5 mr-1" />
+                  <span>Profile</span>
                 </Link>
-                <button onClick={logout} className="ml-4">
-                  <LogOut className="h-6 w-6 text-gray-600 hover:text-indigo-600" />
+                <button onClick={logout} className="flex items-center text-gray-700 hover:text-indigo-600">
+                  <LogOut className="h-5 w-5 mr-1" />
+                  <span>Logout</span>
                 </button>
               </>
             ) : (
-              <div className="flex space-x-4">
-                <Link to="/login" className="text-gray-700 hover:text-indigo-600">Login</Link>
-                <Link to="/register" className="px-4 py-2 rounded-md bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700">
-                  Register
+              <>
+                <Link to="/login" className="flex items-center text-gray-700 hover:text-indigo-600">
+                  <LogIn className="h-5 w-5 mr-1" />
+                  <span>Login</span>
                 </Link>
-              </div>
+                <Link to="/register" className="flex items-center text-gray-700 hover:text-indigo-600">
+                  <UserPlus className="h-5 w-5 mr-1" />
+                  <span>Register</span>
+                </Link>
+              </>
             )}
           </div>
         </div>

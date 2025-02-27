@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 const CartContext = createContext();
 
@@ -12,6 +13,7 @@ export const useCart = () => {
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const { isAuthenticated } = useContext(AuthContext);
 
   const addToCart = (product) => {
     setCartItems(prevItems => {

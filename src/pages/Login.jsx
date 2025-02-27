@@ -31,9 +31,10 @@ const Login = () => {
       console.log('Attempting login...');
       const response = await axios.post('http://localhost:5000/login', { email, password });
       console.log('Login response:', response.data);
-      // Store user data and token in local storage
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-      localStorage.setItem('token', response.data.token);
+      
+      // Use the login function from AuthContext
+      login(response.data.token, response.data.user); // Update context with user data and token
+      
       navigate('/profile'); // Redirect to profile after login
     } catch (error) {
       console.error('Error logging in:', error);

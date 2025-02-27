@@ -118,14 +118,6 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to='/become-seller'
-              className='flex items-center text-gray-700 hover:text-indigo-600'
-            >
-              <Store className='h-5 w-5 mr-1' />
-              <span>Become a Seller</span>
-            </Link>
-
-            <Link
               to='/cart'
               className='flex items-center text-gray-700 hover:text-indigo-600'
             >

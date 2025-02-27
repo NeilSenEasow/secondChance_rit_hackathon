@@ -22,7 +22,7 @@ const Profile = () => {
     // Dummy user data for testing
     const mockUser = {
       id: 1,
-      name: "John Doe",
+      name: "Nandhu",
       location: "New York, NY",
       joinedDate: "January 2021",
       listings: 5,

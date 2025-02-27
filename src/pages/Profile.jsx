@@ -14,10 +14,20 @@ const Profile = () => {
 
   // Redirect if not authenticated
   useEffect(() => {
-    if (!isAuthenticated) {
-      navigate('/login');
-      return;
-    }
+    // if (!isAuthenticated) {
+    //   navigate('/login');
+    //   return;
+    // }
+
+    // Dummy user data for testing
+    const mockUser = {
+      id: 1,
+      name: "John Doe",
+      location: "New York, NY",
+      joinedDate: "January 2021",
+      listings: 5,
+      rating: 4.5
+    };
 
     // In a real app, you would fetch the user profile from your API
     setUserProfile(mockUser);
@@ -25,7 +35,7 @@ const Profile = () => {
     // Filter products to get user's listings
     const listings = mockProducts.filter(p => p.seller.id === mockUser.id);
     setUserListings(listings);
-  }, [isAuthenticated, navigate]);
+  }, [navigate]);
 
   if (!userProfile) {
     return (

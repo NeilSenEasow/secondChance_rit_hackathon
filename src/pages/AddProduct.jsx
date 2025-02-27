@@ -15,7 +15,7 @@ const categories = [
 ];
 
 const AddProduct = () => {
-  const { isAuthenticated } = useContext(AuthContext);
+  // const { isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
   
   const [name, setName] = useState('');
@@ -29,11 +29,11 @@ const AddProduct = () => {
   const [loading, setLoading] = useState(false);
 
   // Redirect if not authenticated
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate('/login');
-    }
-  }, [isAuthenticated, navigate]);
+  // useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     navigate('/login');
+  //   }
+  // }, [isAuthenticated, navigate]);
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {

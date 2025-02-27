@@ -30,7 +30,7 @@ const Login = () => {
       if (response.ok) {
         // Store the token and user data
         login(data.token, data.user);
-        navigate('/profile'); // Redirect to the profile page
+        navigate('/profile');
       } else {
         setError(data.message);
       }

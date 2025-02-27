@@ -35,6 +35,8 @@ const Login = () => {
       // Use the login function from AuthContext
       login(response.data.token, response.data.user); // Update context with user data and token
       
+      localStorage.setItem('token', response.data.token); // Store the token
+      
       navigate('/profile'); // Redirect to profile after login
     } catch (error) {
       console.error('Error logging in:', error);

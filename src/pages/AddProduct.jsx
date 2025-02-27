@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Upload } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 
 const categories = [
@@ -15,7 +14,7 @@ const categories = [
 ];
 
 const AddProduct = () => {
-  // const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
   
   const [name, setName] = useState('');
@@ -23,29 +22,23 @@ const AddProduct = () => {
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState(categories[0]);
   const [location, setLocation] = useState('');
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState('');
   const [imagePreview, setImagePreview] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   // Redirect if not authenticated
-  // useEffect(() => {
-  //   if (!isAuthenticated) {
-  //     navigate('/login');
-  //   }
-  // }, [isAuthenticated, navigate]);
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleImageChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      setImage(file);
-      
-      // Create preview
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-      };
-      reader.readAsDataURL(file);
+    const url = e.target.value;
+    if (url) {
+      setImage(url);
+      setImagePreview(url);
     }
   };
 
@@ -54,21 +47,40 @@ const AddProduct = () => {
     setError('');
     
     if (!image) {
-      setError('Please upload an image of your item');
+      setError('Please provide a link to an image of your item');
       return;
     }
     
     setLoading(true);
     
     try {
-      // In a real app, you would upload the image to a service like Cloudinary
-      // and then save the product details to your backend
-      
-      // For now, we'll simulate a successful submission
-      setTimeout(() => {
+      const formData = new FormData();
+      formData.append('image', image); // Append the image URL first
+      formData.append('name', name);
+      formData.append('category', category);
+      formData.append('price', price);
+      formData.append('description', description);
+      formData.append('location', location);
+
+      const token = localStorage.getItem('token');
+
+      const response = await fetch("http://localhost:5000/add-product", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          // Do not set Content-Type for FormData; the browser will set it automatically
+        },
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
         setLoading(false);
-        navigate('/');
-      }, 1500);
+        navigate('/'); // Redirect to home or another page after successful submission
+      } else {
+        setError(data.message);
+      }
     } catch (err) {
       setError('An error occurred while adding your product');
       setLoading(false);
@@ -89,53 +101,34 @@ const AddProduct = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-6">
             <label className="block text-gray-700 font-medium mb-2">
-              Item Photos
+              Item Photos (Image URL)
             </label>
-            <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-              {imagePreview ? (
-                <div className="w-full text-center">
-                  <img 
-                    src={imagePreview} 
-                    alt="Preview" 
-                    className="mx-auto h-64 object-cover"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setImage(null);
-                      setImagePreview(null);
-                    }}
-                    className="mt-2 text-sm text-red-600 hover:text-red-800"
-                  >
-                    Remove
-                  </button>
-                </div>
-              ) : (
-                <div className="space-y-1 text-center">
-                  <Upload className="mx-auto h-12 w-12 text-gray-400" />
-                  <div className="flex text-sm text-gray-600">
-                    <label
-                      htmlFor="file-upload"
-                      className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-                    >
-                      <span>Upload a file</span>
-                      <input
-                        id="file-upload"
-                        name="file-upload"
-                        type="file"
-                        className="sr-only"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                      />
-                    </label>
-                    <p className="pl-1">or drag and drop</p>
-                  </div>
-                  <p className="text-xs text-gray-500">
-                    PNG, JPG, GIF up to 10MB
-                  </p>
-                </div>
-              )}
-            </div>
+            <input
+              type="text"
+              placeholder="Enter image URL"
+              onChange={handleImageChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required
+            />
+            {imagePreview && (
+              <div className="mt-2 text-center">
+                <img 
+                  src={imagePreview} 
+                  alt="Preview" 
+                  className="mx-auto h-64 object-cover"
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    setImage('');
+                    setImagePreview(null);
+                  }}
+                  className="mt-2 text-sm text-red-600 hover:text-red-800"
+                >
+                  Remove
+                </button>
+              </div>
+            )}
           </div>
           
           <div className="mb-4">

@@ -2,20 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Heart } from 'lucide-react';
 
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  location: string;
-  createdAt: string;
-}
-
-interface ProductCardProps {
-  product: Product;
-}
-
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard = ({ product }) => {
   return (
     <div className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
       <Link to={`/product/${product.id}`}>

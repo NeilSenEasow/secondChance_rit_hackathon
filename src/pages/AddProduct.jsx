@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Upload } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
@@ -14,8 +14,8 @@ const categories = [
   'Other'
 ];
 
-const AddProduct: React.FC = () => {
-  const { isAuthenticated, user } = useContext(AuthContext);
+const AddProduct = () => {
+  const { isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
   
   const [name, setName] = useState('');
@@ -23,19 +23,19 @@ const AddProduct: React.FC = () => {
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState(categories[0]);
   const [location, setLocation] = useState('');
-  const [image, setImage] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   // Redirect if not authenticated
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isAuthenticated) {
       navigate('/login');
     }
   }, [isAuthenticated, navigate]);
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       setImage(file);
@@ -43,13 +43,13 @@ const AddProduct: React.FC = () => {
       // Create preview
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result as string);
+        setImagePreview(reader.result);
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     

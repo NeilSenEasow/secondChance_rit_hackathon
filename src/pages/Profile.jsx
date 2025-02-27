@@ -5,23 +5,23 @@ import { AuthContext } from '../context/AuthContext';
 import { mockProducts } from '../utils/mockData';
 import ProductCard from '../components/ProductCard';
 
-const Profile: React.FC = () => {
+const Profile = () => {
   const { isAuthenticated, user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('listings');
-  const [userProfile, setUserProfile] = useState<any>(null);
-  const [userListings, setUserListings] = useState<any[]>([]);
-  
+  const [userProfile, setUserProfile] = useState(null);
+  const [userListings, setUserListings] = useState([]);
+
   // Redirect if not authenticated
   useEffect(() => {
     if (!isAuthenticated) {
       navigate('/login');
       return;
     }
-    
+
     // In a real app, you would fetch the user profile from your API
     setUserProfile(mockUser);
-    
+
     // Filter products to get user's listings
     const listings = mockProducts.filter(p => p.seller.id === mockUser.id);
     setUserListings(listings);
@@ -65,7 +65,7 @@ const Profile: React.FC = () => {
               </button>
             </div>
           </div>
-          
+
           <div className="mt-6 grid grid-cols-3 gap-6 text-center">
             <div>
               <div className="text-2xl font-bold text-gray-900">{userProfile.listings}</div>
@@ -86,7 +86,7 @@ const Profile: React.FC = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Tabs */}
         <div className="border-b border-gray-200">
           <nav className="flex -mb-px">
@@ -125,7 +125,7 @@ const Profile: React.FC = () => {
             </button>
           </nav>
         </div>
-        
+
         {/* Tab Content */}
         <div className="p-6">
           {activeTab === 'listings' && (
@@ -140,7 +140,7 @@ const Profile: React.FC = () => {
                   Add New Listing
                 </Link>
               </div>
-              
+
               {userListings.length === 0 ? (
                 <div className="text-center py-12">
                   <Package className="h-12 w-12 mx-auto text-gray-400" />
@@ -165,7 +165,7 @@ const Profile: React.FC = () => {
               )}
             </>
           )}
-          
+
           {activeTab === 'favorites' && (
             <div className="text-center py-12">
               <Star className="h-12 w-12 mx-auto text-gray-400" />
@@ -181,7 +181,7 @@ const Profile: React.FC = () => {
               </div>
             </div>
           )}
-          
+
           {activeTab === 'purchases' && (
             <div className="text-center py-12">
               <Package className="h-12 w-12 mx-auto text-gray-400" />

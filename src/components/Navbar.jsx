@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Search, ShoppingBag, User, LogOut } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   const { isAuthenticated, logout } = useContext(AuthContext);
 
   return (

@@ -4,9 +4,9 @@ import { Heart, Share2, MapPin, Calendar, User, MessageCircle } from 'lucide-rea
 import { mockProducts } from '../utils/mockData';
 import { AuthContext } from '../context/AuthContext';
 
-const ProductDetails: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const [product, setProduct] = useState<any>(null);
+const ProductDetails = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const { isAuthenticated } = useContext(AuthContext);
   

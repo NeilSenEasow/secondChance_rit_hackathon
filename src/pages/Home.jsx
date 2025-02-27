@@ -16,10 +16,10 @@ const categories = [
   'Other'
 ];
 
-const Home: React.FC = () => {
+const Home = () => {
   const [products, setProducts] = useState(mockProducts);
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
+  const [priceRange, setPriceRange] = useState([0, 1000]);
   const [showFilters, setShowFilters] = useState(false);
 
   // In a real app, you would fetch products from your API

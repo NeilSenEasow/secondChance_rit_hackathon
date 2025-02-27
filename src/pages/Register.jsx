@@ -24,14 +24,26 @@ const Register = () => {
     setLoading(true);
     
     try {
-      // In a real app, you would make an API call to your backend
-      // For now, we'll simulate a successful registration
-      setTimeout(() => {
-        setLoading(false);
+      const response = await fetch("http://localhost:5000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, email, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Store the token in local storage or a context
+        localStorage.setItem("token", data.token);
         navigate('/login');
-      }, 1000);
+      } else {
+        setError(data.message);
+      }
     } catch (err) {
       setError('An error occurred during registration');
+    } finally {
       setLoading(false);
     }
   };

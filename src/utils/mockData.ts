@@ -80,7 +80,7 @@ export const mockProducts = [
     description: 'IKEA BILLY bookcase in white. 80x28x202 cm. Assembled but in excellent condition. Moving out and need to sell quickly.',
     price: 60,
     category: 'Furniture',
-    image: 'https://images.unsplash.com/photo-1588279102920-e8df49e212da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
+    image: 'https://plus.unsplash.com/premium_photo-1661368857325-dc630d9f8d5c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGJvb2tjYXNlfGVufDB8MHwwfHx8MA%3D%3D',
     seller: {
       id: '106',
       name: 'Michael Brown',

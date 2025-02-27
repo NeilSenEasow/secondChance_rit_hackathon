@@ -18,23 +18,6 @@ export const mockProducts = [
   },
   {
     id: "2",
-    name: "Vintage Leather Sofa",
-    description:
-      'Beautiful vintage leather sofa in caramel color. Some normal wear but in great condition overall. Dimensions: 84" x 36" x 32".',
-    price: 450,
-    category: "Furniture",
-    image:
-      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
-    seller: {
-      id: "102",
-      name: "Maria Garcia",
-      rating: 4.9,
-    },
-    location: "Chicago, IL",
-    createdAt: "5 days ago",
-  },
-  {
-    id: "3",
     name: "Mountain Bike - Trek Marlin 7",
     description:
       'Trek Marlin 7 mountain bike, 2021 model. Size medium (29" wheels). Barely used, in like-new condition.',
@@ -51,7 +34,7 @@ export const mockProducts = [
     createdAt: "1 week ago",
   },
   {
-    id: "4",
+    id: "3",
     name: "Sony PlayStation 5 Disc Edition",
     description:
       "PS5 Disc Edition in perfect working condition. Includes 2 controllers, charging dock, and 3 games (Spider-Man, God of War, Horizon).",
@@ -68,29 +51,12 @@ export const mockProducts = [
     createdAt: "3 days ago",
   },
   {
-    id: "5",
-    name: "Vintage Polaroid Camera",
-    description:
-      "Vintage Polaroid OneStep SX-70 camera from the 1970s. Fully functional and in great cosmetic condition. Comes with 2 packs of film.",
-    price: 120,
-    category: "Electronics",
-    image:
-      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
-    seller: {
-      id: "105",
-      name: "Emma Davis",
-      rating: 5.0,
-    },
-    location: "Portland, OR",
-    createdAt: "1 day ago",
-  },
-  {
-    id: "6",
+    id: "4",
     name: "IKEA BILLY Bookcase - White",
     description:
       "IKEA BILLY bookcase in white. 80x28x202 cm. Assembled but in excellent condition. Moving out and need to sell quickly.",
     price: 60,
-    category: "Furniture",
+    category: "Others",
     image:
       "https://plus.unsplash.com/premium_photo-1661368857325-dc630d9f8d5c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGJvb2tjYXNlfGVufDB8MHwwfHx8MA%3D%3D",
     seller: {
@@ -102,29 +68,12 @@ export const mockProducts = [
     createdAt: "4 days ago",
   },
   {
-    id: "7",
-    name: "Samsung Galaxy S21",
-    description:
-      "Samsung Galaxy S21 (128GB) in mint condition. Comes with original accessories and box.",
-    price: 599,
-    category: "Electronics",
-    image:
-      "https://images.unsplash.com/photo-1610792516519-a4dd9cbe0dee?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    seller: {
-      id: "107",
-      name: "John Doe",
-      rating: 4.9,
-    },
-    location: "Los Angeles, CA",
-    createdAt: "1 week ago",
-  },
-  {
-    id: "8",
+    id: "5",
     name: "Study Table Set",
     description:
       "Modern study table set. Excellent condition, includes 1 chairs.",
     price: 350,
-    category: "Furniture",
+    category: "Others",
     image:
       "https://plus.unsplash.com/premium_photo-1732730224444-83c205e77145?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     seller: {
@@ -136,82 +85,14 @@ export const mockProducts = [
     createdAt: "2 weeks ago",
   },
   {
-    id: "9",
-    name: "Canon EOS Rebel T7",
-    description:
-      "Canon EOS Rebel T7 camera with 18-55mm lens. Like new, used only a few times.",
-    price: 450,
-    category: "Electronics",
-    image:
-      "https://images.unsplash.com/photo-1499696786230-3ebd9d0d6fd8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    seller: {
-      id: "109",
-      name: "Alice Johnson",
-      rating: 4.7,
-    },
-    location: "Miami, FL",
-    createdAt: "3 days ago",
-  },
-  {
-    id: "10",
-    name: "Bose QuietComfort 35 II",
-    description:
-      "Bose QuietComfort 35 II wireless headphones. Excellent sound quality and noise cancellation.",
-    price: 299,
-    category: "Electronics",
-    image:
-      "https://images.unsplash.com/photo-1581234567890-abcdef123456?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    seller: {
-      id: "110",
-      name: "Mark Taylor",
-      rating: 4.9,
-    },
-    location: "Houston, TX",
-    createdAt: "1 month ago",
-  },
-  {
-    id: "11",
-    name: "Apple Watch Series 6",
-    description:
-      "Apple Watch Series 6 (GPS, 44mm) in great condition. Comes with original box and charger.",
-    price: 350,
-    category: "Electronics",
-    image:
-      "https://images.unsplash.com/photo-1601234567890-abcdef123456?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    seller: {
-      id: "111",
-      name: "Laura Wilson",
-      rating: 4.8,
-    },
-    location: "Phoenix, AZ",
-    createdAt: "2 weeks ago",
-  },
-  {
-    id: "12",
-    name: "Xbox Series X",
-    description:
-      "Xbox Series X console in perfect condition. Includes 1 controller and 2 games.",
-    price: 499,
-    category: "Electronics",
-    image:
-      "https://images.unsplash.com/photo-1601234567890-abcdef123456?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    seller: {
-      id: "112",
-      name: "Chris Evans",
-      rating: 4.6,
-    },
-    location: "Dallas, TX",
-    createdAt: "1 month ago",
-  },
-  {
-    id: "13",
+    id: "6",
     name: "Nike Air Max 270",
     description:
       "Nike Air Max 270 sneakers, size 10.5. Worn a few times, in excellent condition.",
     price: 120,
-    category: "Clothing",
+    category: "Others",
     image:
-      "https://images.unsplash.com/photo-1601234567890-abcdef123456?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     seller: {
       id: "113",
       name: "Jessica Brown",
@@ -221,31 +102,14 @@ export const mockProducts = [
     createdAt: "3 days ago",
   },
   {
-    id: "14",
-    name: "Leather Jacket",
-    description:
-      "Stylish leather jacket, size M. In great condition, perfect for fall.",
-    price: 200,
-    category: "Clothing",
-    image:
-      "https://images.unsplash.com/photo-1601234567890-abcdef123456?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    seller: {
-      id: "114",
-      name: "Tom Hardy",
-      rating: 4.8,
-    },
-    location: "Boston, MA",
-    createdAt: "2 weeks ago",
-  },
-  {
-    id: "15",
+    id: "7",
     name: "Gaming Chair",
     description:
       "Ergonomic gaming chair, adjustable and comfortable. Like new.",
     price: 150,
-    category: "Furniture",
+    category: "Others",
     image:
-      "https://images.unsplash.com/photo-1601234567890-abcdef123456?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1598550476439-6847785fcea6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     seller: {
       id: "115",
       name: "Emma Watson",
@@ -255,14 +119,14 @@ export const mockProducts = [
     createdAt: "1 month ago",
   },
   {
-    id: "16",
+    id: "8",
     name: "AirPods Pro",
     description:
       "Apple AirPods Pro with noise cancellation. In excellent condition.",
     price: 249,
     category: "Electronics",
     image:
-      "https://images.unsplash.com/photo-1601234567890-abcdef123456?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "https://photos5.appleinsider.com/gallery/product_pages/266-hero.jpg?=1740559897",
     seller: {
       id: "116",
       name: "Robert Downey Jr.",
@@ -272,82 +136,14 @@ export const mockProducts = [
     createdAt: "2 weeks ago",
   },
   {
-    id: "17",
-    name: "Coffee Maker",
-    description:
-      "High-quality coffee maker, perfect for home brewing. Used but in great condition.",
-    price: 80,
-    category: "Appliances",
-    image:
-      "https://images.unsplash.com/photo-1601234567890-abcdef123456?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    seller: {
-      id: "117",
-      name: "Natalie Portman",
-      rating: 4.8,
-    },
-    location: "Orlando, FL",
-    createdAt: "1 week ago",
-  },
-  {
-    id: "18",
-    name: "Electric Guitar",
-    description:
-      "Fender electric guitar in excellent condition. Comes with a hard case.",
-    price: 600,
-    category: "Musical Instruments",
-    image:
-      "https://images.unsplash.com/photo-1601234567890-abcdef123456?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    seller: {
-      id: "118",
-      name: "John Mayer",
-      rating: 4.9,
-    },
-    location: "Nashville, TN",
-    createdAt: "2 months ago",
-  },
-  {
-    id: "19",
-    name: "Camping Tent",
-    description:
-      "4-person camping tent, easy to set up. Used once, in great condition.",
-    price: 120,
-    category: "Outdoor",
-    image:
-      "https://images.unsplash.com/photo-1601234567890-abcdef123456?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    seller: {
-      id: "119",
-      name: "Chris Pratt",
-      rating: 4.7,
-    },
-    location: "Salt Lake City, UT",
-    createdAt: "1 month ago",
-  },
-  {
-    id: "20",
-    name: "Smart TV - 55 inch",
-    description:
-      "55 inch Smart TV, excellent picture quality. Comes with remote and original box.",
-    price: 400,
-    category: "Electronics",
-    image:
-      "https://images.unsplash.com/photo-1601234567890-abcdef123456?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    seller: {
-      id: "120",
-      name: "Scarlett Johansson",
-      rating: 4.8,
-    },
-    location: "Seattle, WA",
-    createdAt: "2 weeks ago",
-  },
-  {
-    id: "21",
+    id: "9",
     name: "Yoga Mat",
     description:
       "High-quality yoga mat, non-slip surface. Used but in good condition.",
     price: 30,
-    category: "Fitness",
+    category: "Sports",
     image:
-      "https://images.unsplash.com/photo-1601234567890-abcdef123456?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     seller: {
       id: "121",
       name: "Jennifer Aniston",
@@ -357,14 +153,14 @@ export const mockProducts = [
     createdAt: "1 week ago",
   },
   {
-    id: "22",
+    id: "10",
     name: "Bluetooth Speaker",
     description:
       "Portable Bluetooth speaker with great sound quality. Like new.",
     price: 70,
     category: "Electronics",
     image:
-      "https://images.unsplash.com/photo-1601234567890-abcdef123456?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     seller: {
       id: "122",
       name: "Will Smith",
@@ -374,37 +170,138 @@ export const mockProducts = [
     createdAt: "2 weeks ago",
   },
   {
-    id: "23",
-    name: "Fitness Tracker",
+    id: "11",
+    name: "Engineering Mathematics Textbook",
     description:
-      "Smart fitness tracker with heart rate monitor. In excellent condition.",
-    price: 100,
-    category: "Fitness",
+      "Advanced Engineering Mathematics by Erwin Kreyszig, 10th Edition. Like new condition, no highlights or notes.",
+    price: 75,
+    category: "Books",
     image:
-      "https://images.unsplash.com/photo-1601234567890-abcdef123456?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "https://rukminim2.flixcart.com/image/850/1000/xif0q/book/t/s/e/advanced-engineering-mathematics-original-imah7zcxrqy83vrr.jpeg?q=90&crop=false",
     seller: {
       id: "123",
-      name: "Dwayne Johnson",
+      name: "Mike Chen",
       rating: 4.9,
     },
-    location: "San Francisco, CA",
-    createdAt: "1 month ago",
+    location: "Boston, MA",
+    createdAt: "5 days ago",
   },
   {
-    id: "24",
-    name: "Drone with Camera",
+    id: "12",
+    name: "Professional Drawing Table",
     description:
-      "High-quality drone with 4K camera. Used but in great condition.",
-    price: 800,
-    category: "Electronics",
+      "Adjustable drafting table with parallel bar. Perfect for engineering drawings and design work. Excellent condition.",
+    price: 180,
+    category: "Others",
     image:
-      "https://images.unsplash.com/photo-1601234567890-abcdef123456?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      "https://www.jiomart.com/images/product/original/rvek934ong/kawachi-wooden-portable-architect-drafting-table-engineering-drawing-board-5-adjustable-angles-brown-product-images-orvek934ong-p594311511-6-202210070514.jpg?im=Resize=(1000,1000)",
     seller: {
       id: "124",
-      name: "Elon Musk",
+      name: "Sarah Lee",
+      rating: 4.7,
+    },
+    location: "Chicago, IL",
+    createdAt: "1 week ago",
+  },
+  {
+    id: "13",
+    name: "Engineering Drawing Kit",
+    description:
+      "Complete drawing kit including compass set, protractor, scale rulers, and professional drawing pencils. Barely used.",
+    price: 45,
+    category: "Others",
+    image:
+      "https://m.media-amazon.com/images/I/71bdI01LeyL._AC_UF1000,1000_QL80_.jpg",
+    seller: {
+      id: "125",
+      name: "Tom Parker",
+      rating: 4.8,
+    },
+    location: "San Jose, CA",
+    createdAt: "3 days ago",
+  },
+  {
+    id: "14",
+    name: "Circuit Analysis Textbook",
+    description:
+      "Circuit Analysis : Hayt, William, Kemmerly, Jack, Durbin, Steven, 8th Edition. Good condition with minimal highlighting.",
+    price: 55,
+    category: "Books",
+    image:
+      "https://m.media-amazon.com/images/I/611sc+cJXaL._AC_UF1000,1000_QL80_.jpg",
+    seller: {
+      id: "126",
+      name: "Emily Zhang",
       rating: 4.9,
     },
-    location: "Los Angeles, CA",
-    createdAt: "2 months ago",
+    location: "Seattle, WA",
+    createdAt: "1 week ago",
+  },
+  {
+    id: "15",
+    name: "Scientific Calculator",
+    description:
+      "Texas Instruments TI-84 Plus graphing calculator. Perfect for engineering courses. Includes manual and case.",
+    price: 85,
+    category: "Electronics",
+    image: "https://m.media-amazon.com/images/I/61A5VbemBaL.jpg",
+    seller: {
+      id: "127",
+      name: "David Kim",
+      rating: 4.8,
+    },
+    location: "Austin, TX",
+    createdAt: "4 days ago",
+  },
+  {
+    id: "16",
+    name: "Mechanics of Materials Book",
+    description:
+      "Mechanics of Materials by Beer & Johnston, 7th Edition. Includes solution manual. Good condition.",
+    price: 65,
+    category: "Books",
+    image:
+      "https://m.media-amazon.com/images/I/510p3i39-7L._AC_UF1000,1000_QL80_.jpg",
+    seller: {
+      id: "128",
+      name: "Lisa Thompson",
+      rating: 4.7,
+    },
+    location: "Portland, OR",
+    createdAt: "6 days ago",
+  },
+  {
+    id: "17",
+    name: "AutoCAD Student License",
+    description:
+      "AutoCAD 2023 Student License (1-year remaining). Transferable license for engineering students.",
+    price: 50,
+    category: "Others",
+    image:
+      "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    seller: {
+      id: "129",
+      name: "Ryan Martinez",
+      rating: 4.9,
+    },
+    location: "Houston, TX",
+    createdAt: "2 days ago",
+  },
+  {
+    id: "18",
+    name: "Digital Logic Design Book",
+    description:
+      "Digital Design by Morris Mano, 6th Edition. Perfect condition, no markings.",
+    price: 60,
+    category: "Books",
+    image:
+      "https://rukminim2.flixcart.com/image/850/1000/kjbr8280-0/book/n/r/x/digital-logic-computer-design-original-imafyx6p4nygphfn.jpeg?q=90&crop=false",
+    seller: {
+      id: "130",
+      name: "Alex Wong",
+      rating: 4.8,
+    },
+    location: "San Diego, CA",
+    createdAt: "1 week ago",
   },
 ];

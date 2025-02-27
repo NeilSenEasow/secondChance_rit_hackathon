@@ -16,7 +16,7 @@ import { AuthContext } from "../context/AuthContext";
 import { mockProducts } from "../utils/mockData";
 
 const Navbar = () => {
-  const { isAuthenticated, logout } = useContext(AuthContext);
+  const { isAuthenticated, logout, user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [showResults, setShowResults] = useState(false);
@@ -147,7 +147,7 @@ const Navbar = () => {
                   className='flex items-center text-gray-700 hover:text-indigo-600'
                 >
                   <User className='h-5 w-5 mr-1' />
-                  <span>Profile</span>
+                  <span>{user.name}</span>
                 </Link>
                 <button
                   onClick={handleLogout}

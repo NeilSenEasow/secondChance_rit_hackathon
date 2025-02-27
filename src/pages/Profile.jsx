@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, MapPin, Calendar, Package, Star, Settings, PlusCircle } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
@@ -6,15 +6,17 @@ import ProductCard from '../components/ProductCard';
 const Profile = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('profile');
-  const [userProfile] = useState({
-    name: "Neil",
-    location: "New York, NY",
-    joinedDate: "February 2025",
-    listings: 5,
-    rating: 4.5,
-    email: "john.doe@example.com"
-  });
+  const [userProfile, setUserProfile] = useState(null);
   const [userListings, setUserListings] = useState([]);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      setUserProfile(user);
+    } else {
+      navigate('/login');
+    }
+  }, [navigate]);
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -26,16 +28,16 @@ const Profile = () => {
               <User className="h-12 w-12 text-indigo-500" />
             </div>
             <div className="mt-4 sm:mt-0 sm:ml-6 text-center sm:text-left">
-              <h1 className="text-2xl font-bold text-gray-900">{userProfile.name}</h1>
+              <h1 className="text-2xl font-bold text-gray-900">{userProfile?.name}</h1>
               <div className="flex flex-col sm:flex-row sm:items-center mt-2 text-gray-600">
                 <div className="flex items-center justify-center sm:justify-start">
                   <MapPin className="h-4 w-4 mr-1" />
-                  <span>{userProfile.location || "Location not set"}</span>
+                  <span>{userProfile?.location || "Location not set"}</span>
                 </div>
                 <span className="hidden sm:block mx-2">•</span>
                 <div className="flex items-center justify-center sm:justify-start mt-1 sm:mt-0">
                   <Calendar className="h-4 w-4 mr-1" />
-                  <span>Member since {userProfile.joinedDate || "Date not set"}</span>
+                  <span>Member since {userProfile?.joinedDate || "Date not set"}</span>
                 </div>
               </div>
             </div>
@@ -49,12 +51,12 @@ const Profile = () => {
 
           <div className="mt-6 grid grid-cols-3 gap-6 text-center">
             <div>
-              <div className="text-2xl font-bold text-gray-900">{userProfile.listings || 0}</div>
+              <div className="text-2xl font-bold text-gray-900">{userProfile?.listings || 0}</div>
               <div className="text-sm text-gray-500">Listings</div>
             </div>
             <div>
               <div className="flex items-center justify-center">
-                <span className="text-2xl font-bold text-gray-900">{userProfile.rating || 0}</span>
+                <span className="text-2xl font-bold text-gray-900">{userProfile?.rating || 0}</span>
                 <Star className="h-5 w-5 ml-1 text-yellow-400" />
               </div>
               <div className="text-sm text-gray-500">Rating</div>
@@ -113,11 +115,11 @@ const Profile = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-sm text-gray-600">Name</p>
-                    <p className="font-medium">{userProfile.name}</p>
+                    <p className="font-medium">{userProfile?.name}</p>
                   </div>
                   <div>
                     <p className="text-sm text-gray-600">Email</p>
-                    <p className="font-medium">{userProfile.email}</p>
+                    <p className="font-medium">{userProfile?.email}</p>
                   </div>
                 </div>
               </div>

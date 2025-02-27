@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import axios from 'axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -28,27 +29,14 @@ const Login = () => {
     
     try {
       console.log('Attempting login...');
-      const response = await fetch("http://localhost:5000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
-      });
-
-      const data = await response.json();
-      console.log('Login response:', data);
-
-      if (response.ok) {
-        console.log('Login successful, calling login function with:', data.token, data.user);
-        // Store the token and user data
-        login(data.token, data.user);
-        navigate('/profile');
-      } else {
-        setError(data.message);
-      }
-    } catch (err) {
-      console.error('Login error:', err);
+      const response = await axios.post('http://localhost:5000/login', { email, password });
+      console.log('Login response:', response.data);
+      // Store user data and token in local storage
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+      localStorage.setItem('token', response.data.token);
+      navigate('/profile'); // Redirect to profile after login
+    } catch (error) {
+      console.error('Error logging in:', error);
       setError('An error occurred during login');
     } finally {
       setLoading(false);

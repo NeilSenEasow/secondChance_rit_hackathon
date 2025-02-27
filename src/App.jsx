@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import Navbar from './components/Navbar';
@@ -14,6 +14,7 @@ import Cart from './pages/Cart';
 import axios from 'axios';
 
 function App() {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
   const fetchAPI = async() => {
     try {

@@ -1,90 +1,190 @@
-import React from 'react';
-import { ShoppingBag, Recycle, Heart, DollarSign, Leaf, GraduationCap, Globe } from 'lucide-react';
+import React from "react";
+import {
+  ShoppingBag,
+  Recycle,
+  Heart,
+  DollarSign,
+  Leaf,
+  GraduationCap,
+  Globe,
+  Mail,
+  Phone,
+  MapPin,
+} from "lucide-react";
 
 const About = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-center mb-8 text-indigo-600">
-        About SecondChance
-      </h1>
-      
-      <div className="max-w-3xl mx-auto">
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <p className="text-lg text-gray-700 mb-6">
-            SecondChance is a sustainable marketplace platform created by Computer Science and Engineering students to give pre-loved items a new home
-            while promoting environmental consciousness and affordability in our community.
+    <div className='min-h-screen bg-gray-50'>
+      {/* Hero Section */}
+      <div className='bg-indigo-600 text-white py-20'>
+        <div className='container mx-auto px-4'>
+          <h1 className='text-5xl font-bold text-center mb-6'>
+            Welcome to SecondChance
+          </h1>
+          <p className='text-xl text-center max-w-3xl mx-auto text-indigo-100'>
+            A sustainable marketplace created by students, for students. Giving
+            pre-loved items a new home while making education more affordable.
           </p>
+        </div>
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            <div className="text-center">
-              <ShoppingBag className="h-12 w-12 text-indigo-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Buy & Sell</h3>
-              <p className="text-gray-600">Easy and secure platform to buy and sell pre-loved items</p>
-            </div>
-
-            <div className="text-center">
-              <Recycle className="h-12 w-12 text-indigo-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Sustainability</h3>
-              <p className="text-gray-600">Reduce waste and promote environmental consciousness</p>
-            </div>
-
-            <div className="text-center">
-              <Heart className="h-12 w-12 text-indigo-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Community</h3>
-              <p className="text-gray-600">Connect with fellow students and build a sustainable community</p>
+      {/* Mission Section */}
+      <div className='container mx-auto px-4 py-16'>
+        <div className='grid md:grid-cols-2 gap-12 items-center'>
+          <div>
+            <h2 className='text-3xl font-bold mb-6 text-gray-800'>
+              Our Mission
+            </h2>
+            <p className='text-gray-600 text-lg leading-relaxed mb-6'>
+              We're on a mission to create a sustainable and affordable
+              marketplace for students. By connecting buyers and sellers within
+              our campus community, we're reducing waste and making education
+              more accessible.
+            </p>
+            <div className='bg-white p-6 rounded-lg shadow-sm border border-gray-100'>
+              <h3 className='font-semibold text-xl mb-4 text-indigo-600'>
+                Impact Goals
+              </h3>
+              <ul className='space-y-3'>
+                {[
+                  "Reduce campus waste by 30%",
+                  "Help students save up to 50% on materials",
+                  "Build an eco-conscious community",
+                  "Promote sustainable habits",
+                ].map((goal, index) => (
+                  <li key={index} className='flex items-center text-gray-700'>
+                    <span className='h-2 w-2 bg-indigo-500 rounded-full mr-3'></span>
+                    {goal}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
+          <div className='grid grid-cols-2 gap-6'>
+            {[
+              {
+                icon: ShoppingBag,
+                title: "Easy Trading",
+                count: "1000+",
+                label: "Items Listed",
+              },
+              {
+                icon: Recycle,
+                title: "Sustainability",
+                count: "500kg",
+                label: "Waste Reduced",
+              },
+              {
+                icon: GraduationCap,
+                title: "Student Focus",
+                count: "2000+",
+                label: "Active Users",
+              },
+              {
+                icon: Heart,
+                title: "Community",
+                count: "800+",
+                label: "Happy Users",
+              },
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className='bg-white p-6 rounded-lg shadow-sm border border-gray-100 text-center'
+              >
+                <stat.icon className='h-8 w-8 text-indigo-600 mx-auto mb-3' />
+                <h3 className='font-semibold text-gray-800 mb-1'>
+                  {stat.title}
+                </h3>
+                <div className='text-2xl font-bold text-indigo-600 mb-1'>
+                  {stat.count}
+                </div>
+                <div className='text-sm text-gray-500'>{stat.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
+      </div>
 
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold mb-6">
+      {/* SDG Section */}
+      <div className='bg-white py-16'>
+        <div className='container mx-auto px-4'>
+          <h2 className='text-3xl font-bold text-center mb-12 text-gray-800'>
             Supporting UN Sustainable Development Goals
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="flex items-start space-x-4">
-              <Globe className="h-8 w-8 text-indigo-600 flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold text-lg mb-2">SDG 12: Responsible Consumption</h3>
-                <p className="text-gray-600">Promoting sustainable consumption patterns through reuse and recycling of pre-loved items.</p>
-              </div>
+          <div className='grid md:grid-cols-2 gap-8 max-w-4xl mx-auto'>
+            <div className='bg-gradient-to-br from-indigo-50 to-white p-6 rounded-xl shadow-sm'>
+              <Globe className='h-12 w-12 text-indigo-600 mb-4' />
+              <h3 className='text-xl font-semibold mb-3 text-gray-800'>
+                SDG 12: Responsible Consumption
+              </h3>
+              <p className='text-gray-600'>
+                Promoting sustainable consumption patterns through reuse and
+                recycling of pre-loved items within our campus community.
+              </p>
             </div>
-            <div className="flex items-start space-x-4">
-              <Leaf className="h-8 w-8 text-indigo-600 flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold text-lg mb-2">SDG 13: Climate Action</h3>
-                <p className="text-gray-600">Reducing carbon footprint by extending the lifecycle of products.</p>
-              </div>
+            <div className='bg-gradient-to-br from-indigo-50 to-white p-6 rounded-xl shadow-sm'>
+              <Leaf className='h-12 w-12 text-indigo-600 mb-4' />
+              <h3 className='text-xl font-semibold mb-3 text-gray-800'>
+                SDG 13: Climate Action
+              </h3>
+              <p className='text-gray-600'>
+                Taking action against climate change by extending product
+                lifecycles and reducing the carbon footprint of our community.
+              </p>
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h2 className="text-2xl font-bold mb-4">
-            Our Mission
-          </h2>
-          <p className="text-gray-700 mb-6">
-            We aim to create a sustainable and affordable marketplace for students to buy and sell pre-loved items,
-            reducing waste and promoting circular economy within our campus community.
-          </p>
-          
-          <div className="bg-indigo-50 p-6 rounded-lg mb-8">
-            <h3 className="font-semibold text-lg mb-3">Impact Goals</h3>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li>Reduce campus waste by 30% through reuse and recycling</li>
-              <li>Help students save up to 50% on educational materials</li>
-              <li>Build a community of environmentally conscious students</li>
-              <li>Promote sustainable consumption habits</li>
-            </ul>
-          </div>
-          
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
-            <p className="text-gray-700">
-              Have questions or suggestions? Reach out to us at{' '}
-              <a href="mailto:support@secondchance.com" className="text-indigo-600 hover:text-indigo-800">
-                support@secondchance.com
-              </a>
-            </p>
+      {/* Contact Section */}
+      <div className='container mx-auto px-4 py-16'>
+        <div className='max-w-4xl mx-auto bg-white rounded-xl shadow-sm overflow-hidden'>
+          <div className='md:flex'>
+            <div className='md:w-1/2 bg-indigo-600 p-8 text-white'>
+              <h3 className='text-2xl font-bold mb-6'>Get in Touch</h3>
+              <div className='space-y-4'>
+                <div className='flex items-center'>
+                  <Mail className='h-5 w-5 mr-3' />
+                  <span>support@secondchance.com</span>
+                </div>
+                <div className='flex items-center'>
+                  <Phone className='h-5 w-5 mr-3' />
+                  <span>+1 (555) 123-4567</span>
+                </div>
+                <div className='flex items-center'>
+                  <MapPin className='h-5 w-5 mr-3' />
+                  <span>University Campus, Building 4</span>
+                </div>
+              </div>
+            </div>
+            <div className='md:w-1/2 p-8'>
+              <h3 className='text-2xl font-bold mb-6 text-gray-800'>
+                Send us a Message
+              </h3>
+              <form className='space-y-4'>
+                <input
+                  type='text'
+                  placeholder='Your Name'
+                  className='w-full px-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500'
+                />
+                <input
+                  type='email'
+                  placeholder='Your Email'
+                  className='w-full px-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500'
+                />
+                <textarea
+                  placeholder='Your Message'
+                  rows='4'
+                  className='w-full px-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500'
+                ></textarea>
+                <button
+                  type='submit'
+                  className='w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors'
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -92,4 +192,4 @@ const About = () => {
   );
 };
 
-export default About; 
+export default About;

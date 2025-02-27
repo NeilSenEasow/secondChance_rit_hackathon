@@ -37,7 +37,12 @@ const Register = () => {
       if (response.ok) {
         // Store the token in local storage or a context
         localStorage.setItem("token", data.token);
-        navigate('/login');
+        navigate('/login', { 
+          state: { 
+            success: true, 
+            message: 'Registration successful! Please login with your credentials.' 
+          } 
+        });
       } else {
         setError(data.message);
       }

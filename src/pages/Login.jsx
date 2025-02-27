@@ -1,15 +1,25 @@
 import React, { useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (location.state?.success) {
+      setSuccess(location.state.message);
+      // Clear the location state
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,6 +27,7 @@ const Login = () => {
     setLoading(true);
     
     try {
+      console.log('Attempting login...');
       const response = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
@@ -26,15 +37,18 @@ const Login = () => {
       });
 
       const data = await response.json();
+      console.log('Login response:', data);
 
       if (response.ok) {
+        console.log('Login successful, calling login function with:', data.token, data.user);
         // Store the token and user data
         login(data.token, data.user);
-        navigate('/profile');
+        navigate('/');
       } else {
         setError(data.message);
       }
     } catch (err) {
+      console.error('Login error:', err);
       setError('An error occurred during login');
     } finally {
       setLoading(false);
@@ -42,9 +56,15 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto">
+    <div className="max-w-md mx-auto mt-8">
       <div className="bg-white p-8 rounded-lg shadow-md">
         <h1 className="text-2xl font-bold text-center mb-6">Log In</h1>
+        
+        {success && (
+          <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded">
+            {success}
+          </div>
+        )}
         
         {error && (
           <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">

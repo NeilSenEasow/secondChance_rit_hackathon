@@ -1,10 +1,16 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Search, ShoppingBag, User, LogOut, ShoppingCart, Info, Store, LogIn, UserPlus, Home } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 
 const Navbar = () => {
   const { isAuthenticated, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <nav className="bg-white shadow-md">
@@ -57,7 +63,10 @@ const Navbar = () => {
                   <User className="h-5 w-5 mr-1" />
                   <span>Profile</span>
                 </Link>
-                <button onClick={logout} className="flex items-center text-gray-700 hover:text-indigo-600">
+                <button 
+                  onClick={handleLogout} 
+                  className="flex items-center text-gray-700 hover:text-indigo-600"
+                >
                   <LogOut className="h-5 w-5 mr-1" />
                   <span>Logout</span>
                 </button>

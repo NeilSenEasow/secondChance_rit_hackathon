@@ -3,15 +3,29 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const cors = require("cors");
+
+// Configure CORS with more explicit options
 const corsOptions = {
   origin: [
     "http://localhost:5173",
-    "https://second-chance-ff8xmyxfu-neilseneasows-projects.vercel.app",
-  ], // Added the new origin
+    "https://second-chance-ff8xmyxfu-neilseneasows-projects.vercel.app", 
+    "https://second-chance-rust.vercel.app"
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  maxAge: 86400 // 24 hours
 };
 
 const app = express();
+
+// Apply CORS middleware before other middleware
 app.use(cors(corsOptions));
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
+
 app.use(express.json());
 
 const SECRET_KEY = "your_secret_key"; // Replace with your actual secret key

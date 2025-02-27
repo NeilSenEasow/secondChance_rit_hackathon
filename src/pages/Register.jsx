@@ -35,7 +35,7 @@ const Register = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Store the token in local storage or a context
+        // Store the token in local storage
         localStorage.setItem("token", data.token);
         navigate('/login', { 
           state: { 

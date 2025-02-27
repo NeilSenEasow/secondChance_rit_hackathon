@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Heart, Share2, MapPin, Calendar, User, MessageCircle, ShoppingCart } from 'lucide-react';
 import { mockProducts } from '../utils/mockData';
 import { AuthContext } from '../context/AuthContext';
@@ -10,17 +10,28 @@ const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const { isAuthenticated } = useContext(AuthContext);
-  const { addToCart } = useCart();
+  const { addToCart, cartItems } = useCart();
+  const navigate = useNavigate();
+  const [isInCart, setIsInCart] = useState(false);
   
   useEffect(() => {
     // In a real app, you would fetch the product from your API
     const foundProduct = mockProducts.find(p => p.id === id);
     setProduct(foundProduct);
     setLoading(false);
-  }, [id]);
+    // Check if product is already in cart
+    if (foundProduct) {
+      setIsInCart(cartItems.some(item => item.id === foundProduct.id));
+    }
+  }, [id, cartItems]);
 
-  const handleAddToCart = () => {
-    addToCart(product);
+  const handleButtonClick = () => {
+    if (isInCart) {
+      navigate('/cart');
+    } else {
+      addToCart(product);
+      setIsInCart(true);
+    }
   };
 
   if (loading) {
@@ -89,11 +100,15 @@ const ProductDetails = () => {
 
             <div className="mt-8 space-y-4">
               <button
-                onClick={handleAddToCart}
-                className="w-full flex items-center justify-center space-x-2 bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition-colors duration-200"
+                onClick={handleButtonClick}
+                className={`w-full flex items-center justify-center space-x-2 px-6 py-3 rounded-md transition-colors duration-200 ${
+                  isInCart 
+                    ? 'bg-green-600 hover:bg-green-700 text-white' 
+                    : 'bg-indigo-600 hover:bg-indigo-700 text-white'
+                }`}
               >
                 <ShoppingCart className="h-5 w-5" />
-                <span>Add to Cart</span>
+                <span>{isInCart ? 'Go to Cart' : 'Add to Cart'}</span>
               </button>
 
               {isAuthenticated ? (

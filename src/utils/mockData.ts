@@ -56,7 +56,7 @@ export const mockProducts = [
     description:
       "IKEA BILLY bookcase in white. 80x28x202 cm. Assembled but in excellent condition. Moving out and need to sell quickly.",
     price: 60,
-    category: "Others",
+    category: "Furniture",
     image:
       "https://plus.unsplash.com/premium_photo-1661368857325-dc630d9f8d5c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGJvb2tjYXNlfGVufDB8MHwwfHx8MA%3D%3D",
     seller: {
@@ -73,7 +73,7 @@ export const mockProducts = [
     description:
       "Modern study table set. Excellent condition, includes 1 chairs.",
     price: 350,
-    category: "Others",
+    category: "Furniture",
     image:
       "https://plus.unsplash.com/premium_photo-1732730224444-83c205e77145?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     seller: {
@@ -192,7 +192,7 @@ export const mockProducts = [
     description:
       "Adjustable drafting table with parallel bar. Perfect for engineering drawings and design work. Excellent condition.",
     price: 180,
-    category: "Others",
+    category: "Furniture",
     image:
       "https://www.jiomart.com/images/product/original/rvek934ong/kawachi-wooden-portable-architect-drafting-table-engineering-drawing-board-5-adjustable-angles-brown-product-images-orvek934ong-p594311511-6-202210070514.jpg?im=Resize=(1000,1000)",
     seller: {
@@ -303,5 +303,123 @@ export const mockProducts = [
     },
     location: "San Diego, CA",
     createdAt: "1 week ago",
+  },
+
+  {
+    id: "19",
+    name: "Portable Study Table",
+    description:
+      "Foldable study table with adjustable height and angle. Perfect for students, easy to move and store. Includes cup holder and device stand.",
+    price: 85,
+    category: "Furniture",
+    image: "https://images.meesho.com/images/products/61985284/1anop_512.webp",
+    seller: {
+      id: "132",
+      name: "Ross Geller",
+      rating: 4.9,
+    },
+    location: "New York, NY",
+    createdAt: "1 week ago",
+  },
+  {
+    id: "20",
+    name: "LED Desk Lamp with USB Port",
+    description:
+      "Adjustable LED desk lamp with 3 lighting modes and USB charging port. Perfect for late-night studying. Like new condition.",
+    price: 25,
+    category: "Electronics",
+    image:
+      "https://m.media-amazon.com/images/I/51NEtJYrkML._AC_UF894,1000_QL80_.jpg",
+    seller: {
+      id: "133",
+      name: "Monica Geller",
+      rating: 4.8,
+    },
+    location: "Boston, MA",
+    createdAt: "3 days ago",
+  },
+  {
+    id: "21",
+    name: "Rechargeable LED Torch",
+    description:
+      "Powerful rechargeable LED torch with multiple modes. Great for emergencies and night walks. Includes USB charging cable.",
+    price: 15,
+    category: "Electronics",
+    image:
+      "https://topsoil.co.in/wp-content/uploads/2024/05/6158UsqOPJL._SL1500_.jpg",
+    seller: {
+      id: "134",
+      name: "Chandler Bing",
+      rating: 4.7,
+    },
+    location: "Chicago, IL",
+    createdAt: "1 week ago",
+  },
+  {
+    id: "22",
+    name: "Electric Kettle - 1L",
+    description:
+      "Compact 1L electric kettle with auto shut-off. Perfect for making coffee, tea, or instant noodles. Barely used.",
+    price: 20,
+    category: "Electronics",
+    image:
+      "https://media.istockphoto.com/id/1300879783/photo/electric-kettle.jpg?s=612x612&w=0&k=20&c=ijmjHvLdSoWk-yshHJHhQ16UIt6vWJ96o-SYGB4jNj4=",
+    seller: {
+      id: "135",
+      name: "Joey Tribbiani",
+      rating: 4.6,
+    },
+    location: "Las Vegas, NV",
+    createdAt: "5 days ago",
+  },
+  {
+    id: "23",
+    name: "Adjustable Book Stand",
+    description:
+      "Portable and adjustable book stand/holder with page clips. Perfect for textbooks and tablets. Folds flat for easy storage.",
+    price: 18,
+    category: "Furniture",
+    image:
+      "https://static2.jetpens.com/images/a/000/255/255105.jpg?auto=format&blend-align=middle%2Ccenter&blend-alpha=10&blend-mode=difference&blend-size=inherit&blend64=aHR0cHM6Ly9zdGF0aWMxLmpldHBlbnMuY29tL2ltYWdlcy9hc3NldHMvd2F0ZXJtYXJrMi5wbmc&chromasub=444&fm=jpg&mark-align=top%2Cright&mark-alpha=30&mark-scale=16&mark64=aHR0cHM6Ly9zdGF0aWMxLmpldHBlbnMuY29tL2ltYWdlcy9hc3NldHMvd2F0ZXJtYXJrMS5wbmc&q=90&usm=20&w=600&s=4635ff1887283cecc3b1cfad092667a3",
+    seller: {
+      id: "136",
+      name: "Phoebe Buffay",
+      rating: 4.9,
+    },
+    location: "Portland, OR",
+    createdAt: "2 days ago",
+  },
+  {
+    id: "24",
+    name: "Mini Desk Fan",
+    description:
+      "USB-powered mini desk fan with 3 speeds. Quiet operation and adjustable angle. Great for hot study sessions.",
+    price: 12,
+    category: "Electronics",
+    image:
+      "https://images-eu.ssl-images-amazon.com/images/I/4115QNaG3mL._AC_UL600_SR600,600_.jpg",
+    seller: {
+      id: "137",
+      name: "Ben Geller",
+      rating: 4.7,
+    },
+    location: "Seattle, WA",
+    createdAt: "6 days ago",
+  },
+  {
+    id: "25",
+    name: "Bedside Storage Organizer",
+    description:
+      "Hanging bedside storage organizer with multiple pockets. Perfect for keeping books, devices, and essentials within reach.",
+    price: 15,
+    category: "Furniture",
+    image: "https://m.media-amazon.com/images/I/71NlBFZJ-DL.jpg",
+    seller: {
+      id: "138",
+      name: "Carol Willick",
+      rating: 4.8,
+    },
+    location: "San Diego, CA",
+    createdAt: "4 days ago",
   },
 ];

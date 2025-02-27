@@ -6,36 +6,41 @@ import { mockProducts } from '../utils/mockData';
 import ProductCard from '../components/ProductCard';
 
 const Profile = () => {
-  const { isAuthenticated, user } = useContext(AuthContext);
+  const { isAuthenticated, user, token } = useContext(AuthContext);
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('listings');
   const [userProfile, setUserProfile] = useState(null);
   const [userListings, setUserListings] = useState([]);
 
-  // Redirect if not authenticated
   useEffect(() => {
-    // if (!isAuthenticated) {
-    //   navigate('/login');
-    //   return;
-    // }
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
 
-    // Dummy user data for testing
-    const mockUser = {
-      id: 1,
-      name: "Nandhu",
-      location: "New York, NY",
-      joinedDate: "January 2021",
-      listings: 5,
-      rating: 4.5
+    const fetchUserProfile = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/profile", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}` // Send the token in the header
+          }
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          setUserProfile(data);
+        } else {
+          console.error(data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+      }
     };
 
-    // In a real app, you would fetch the user profile from your API
-    setUserProfile(mockUser);
-
-    // Filter products to get user's listings
-    const listings = mockProducts.filter(p => p.seller.id === mockUser.id);
-    setUserListings(listings);
-  }, [navigate]);
+    fetchUserProfile();
+  }, [isAuthenticated, navigate, token]);
 
   if (!userProfile) {
     return (
@@ -59,12 +64,12 @@ const Profile = () => {
               <div className="flex flex-col sm:flex-row sm:items-center mt-2 text-gray-600">
                 <div className="flex items-center justify-center sm:justify-start">
                   <MapPin className="h-4 w-4 mr-1" />
-                  <span>{userProfile.location}</span>
+                  <span>{userProfile.location || "Location not set"}</span>
                 </div>
                 <span className="hidden sm:block mx-2">•</span>
                 <div className="flex items-center justify-center sm:justify-start mt-1 sm:mt-0">
                   <Calendar className="h-4 w-4 mr-1" />
-                  <span>Member since {userProfile.joinedDate}</span>
+                  <span>Member since {userProfile.joinedDate || "Date not set"}</span>
                 </div>
               </div>
             </div>
@@ -78,12 +83,12 @@ const Profile = () => {
 
           <div className="mt-6 grid grid-cols-3 gap-6 text-center">
             <div>
-              <div className="text-2xl font-bold text-gray-900">{userProfile.listings}</div>
+              <div className="text-2xl font-bold text-gray-900">{userProfile.listings || 0}</div>
               <div className="text-sm text-gray-500">Listings</div>
             </div>
             <div>
               <div className="flex items-center justify-center">
-                <span className="text-2xl font-bold text-gray-900">{userProfile.rating}</span>
+                <span className="text-2xl font-bold text-gray-900">{userProfile.rating || 0}</span>
                 <Star className="h-5 w-5 ml-1 text-yellow-400" />
               </div>
               <div className="text-sm text-gray-500">Rating</div>

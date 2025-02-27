@@ -42,6 +42,18 @@ const userSchema = new mongoose.Schema({
 // Create a User model
 const User = mongoose.model("User", userSchema);
 
+// Middleware to verify token
+const authenticateToken = (req, res, next) => {
+  const token = req.headers['authorization'];
+  if (!token) return res.status(401).json({ message: 'Access token required' });
+
+  jwt.verify(token, SECRET_KEY, (err, user) => {
+    if (err) return res.status(403).json({ message: 'Invalid token' });
+    req.user = user;
+    next();
+  });
+};
+
 app.get("/", (req, res) => {
   res.json({ fruits: ["apple", "banana", "orange"] });
 });
@@ -111,6 +123,18 @@ app.post("/login", async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({ message: "Error logging in" });
+  }
+});
+
+app.get("/profile", authenticateToken, async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.user.email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json({ name: user.name, email: user.email });
+  } catch (error) {
+    res.status(500).json({ message: "Error retrieving user profile" });
   }
 });
 

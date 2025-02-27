@@ -7,6 +7,9 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import AddProduct from './pages/AddProduct';
 import Profile from './pages/Profile';
+import About from './pages/About';
+import BecomeSeller from './pages/BecomeSeller';
+import Cart from './pages/Cart';
 import axios from 'axios';
 
 function App() {
@@ -36,6 +39,9 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/add-product" element={<AddProduct />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/become-seller" element={<BecomeSeller />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </main>
       </div>

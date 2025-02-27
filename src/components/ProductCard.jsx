@@ -1,14 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Heart, ShoppingCart } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 const ProductCard = ({ product }) => {
-  const { addToCart } = useCart();
+  const { addToCart, cartItems } = useCart();
+  const navigate = useNavigate();
+  const [isInCart, setIsInCart] = useState(cartItems.some(item => item.id === product.id));
 
-  const handleAddToCart = (e) => {
+  const handleButtonClick = (e) => {
     e.preventDefault(); // Prevent navigation when clicking the button
-    addToCart(product);
+    if (isInCart) {
+      navigate('/cart');
+    } else {
+      addToCart(product);
+      setIsInCart(true);
+    }
   };
 
   return (
@@ -39,11 +46,15 @@ const ProductCard = ({ product }) => {
             <span>{product.createdAt}</span>
           </div>
           <button
-            onClick={handleAddToCart}
-            className="flex items-center space-x-1 bg-indigo-600 text-white px-3 py-1 rounded-md hover:bg-indigo-700 transition-colors duration-200"
+            onClick={handleButtonClick}
+            className={`flex items-center space-x-1 px-3 py-1 rounded-md transition-colors duration-200 ${
+              isInCart 
+                ? 'bg-green-600 hover:bg-green-700 text-white' 
+                : 'bg-indigo-600 hover:bg-indigo-700 text-white'
+            }`}
           >
             <ShoppingCart className="h-4 w-4" />
-            <span>Add</span>
+            <span>{isInCart ? 'Go to Cart' : 'Add'}</span>
           </button>
         </div>
       </div>

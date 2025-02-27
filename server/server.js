@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const corsOptions = {
-    origin: "http://localhost:5173" // Removed the trailing slash
+    origin: ["http://localhost:5173", "https://second-chance-ff8xmyxfu-neilseneasows-projects.vercel.app"] // Added the new origin
 }
 
 app.use(cors(corsOptions));

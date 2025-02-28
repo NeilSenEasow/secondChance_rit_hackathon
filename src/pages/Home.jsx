@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Filter } from "lucide-react";
 import ProductCard from "../components/ProductCard";
-import { mockProducts } from "../utils/mockData";
 
 const categories = [
   "All Categories",
@@ -14,15 +13,32 @@ const categories = [
 ];
 
 const Home = () => {
-  const [products, setProducts] = useState(mockProducts);
+  const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [showFilters, setShowFilters] = useState(false);
 
-  // In a real app, you would fetch products from your API
+  // Fetch products from the API
   useEffect(() => {
-    // Filter products based on category and price range
-    const filteredProducts = mockProducts.filter((product) => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/products");
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Filter products based on category and price range
+  useEffect(() => {
+    const filteredProducts = products.filter((product) => {
       const matchesCategory =
         selectedCategory === "All Categories" ||
         product.category === selectedCategory;
@@ -111,7 +127,9 @@ const Home = () => {
         ) : (
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
             {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <Link key={product.id} to={`/product/${product.id}`}>
+                <ProductCard product={product} />
+              </Link>
             ))}
           </div>
         )}

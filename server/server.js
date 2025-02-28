@@ -233,9 +233,68 @@ app.get("/add-product", authenticateToken, async (req, res) => {
 app.get("/user-products", authenticateToken, async (req, res) => {
   try {
     const products = await Product.find({ user: req.user.id }); // Find products by user ID
-    res.json(products);
+    const productsWithId = products.map(product => ({
+      id: product._id, // Include the MongoDB product ID
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      category: product.category,
+      location: product.location,
+      image: product.image,
+      user: product.user
+    }));
+    res.json(productsWithId);
   } catch (error) {
     res.status(500).json({ message: "Error retrieving products" });
+  }
+});
+
+// New endpoint to retrieve all products
+app.get("/products", async (req, res) => {
+  try {
+    const products = await Product.find(); // Retrieve all products
+    const productsWithId = products.map(product => ({
+      id: product._id, // Include the MongoDB product ID
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      category: product.category,
+      location: product.location,
+      image: product.image,
+      user: product.user
+    }));
+    res.json(productsWithId);
+  } catch (error) {
+    res.status(500).json({ message: "Error retrieving products" });
+  }
+});
+
+// New endpoint to retrieve a product by ID
+app.get("/product/:id", async (req, res) => {
+  try {
+    const productId = req.params.id; // Get the product ID from the URL parameters
+    const product = await Product.findById(productId); // Find the product by ID
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    // Include the MongoDB product ID and other details
+    const productWithId = {
+      id: product._id,
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      category: product.category,
+      location: product.location,
+      image: product.image,
+      user: product.user,
+      createdAt: product.createdAt,
+    };
+
+    res.json(productWithId);
+  } catch (error) {
+    res.status(500).json({ message: "Error retrieving product" });
   }
 });
 

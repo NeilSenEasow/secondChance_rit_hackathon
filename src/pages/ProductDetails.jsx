@@ -1,29 +1,49 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Heart, Share2, MapPin, Calendar, User, MessageCircle, ShoppingCart } from 'lucide-react';
-import { mockProducts } from '../utils/mockData';
 import { AuthContext } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 
 const ProductDetails = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // Get the product ID from the URL
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const { isAuthenticated } = useContext(AuthContext);
   const { addToCart, cartItems } = useCart();
   const navigate = useNavigate();
   const [isInCart, setIsInCart] = useState(false);
-  
+
   useEffect(() => {
-    // In a real app, you would fetch the product from your API
-    const foundProduct = mockProducts.find(p => p.id === id);
-    setProduct(foundProduct);
-    setLoading(false);
-    // Check if product is already in cart
-    if (foundProduct) {
-      setIsInCart(cartItems.some(item => item.id === foundProduct.id));
+    const fetchProduct = async () => {
+      const token = localStorage.getItem('token'); // Retrieve the token from local storage
+      try {
+        const response = await fetch(`http://localhost:5000/product/${id}`, { // Fetch product details by ID
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`, // Include the token in the request headers
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch product");
+        }
+        const data = await response.json();
+        setProduct(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  // Check if product is already in cart
+  useEffect(() => {
+    if (product) {
+      setIsInCart(cartItems.some(item => item.id === product.id));
     }
-  }, [id, cartItems]);
+  }, [product, cartItems]);
 
   const handleButtonClick = () => {
     if (isInCart) {
@@ -132,20 +152,7 @@ const ProductDetails = () => {
       <div className="mt-12">
         <h2 className="text-xl font-bold mb-6">Similar Items</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {mockProducts
-            .filter(p => p.category === product.category && p.id !== product.id)
-            .slice(0, 4)
-            .map(p => (
-              <div key={p.id} className="bg-white rounded-lg shadow-sm overflow-hidden">
-                <Link to={`/product/${p.id}`}>
-                  <img src={p.image} alt={p.name} className="w-full h-40 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-medium text-gray-900 truncate">{p.name}</h3>
-                    <p className="text-lg font-bold text-gray-900 mt-1">${p.price}</p>
-                  </div>
-                </Link>
-              </div>
-            ))}
+          {/* Similar items logic can be added here */}
         </div>
       </div>
     </div>

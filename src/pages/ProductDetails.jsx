@@ -17,7 +17,7 @@ const ProductDetails = () => {
     const fetchProduct = async () => {
       const token = localStorage.getItem('token'); // Retrieve the token from local storage
       try {
-        const response = await fetch(`https://secondchance-rit-hackathon-1.onrender.com/${id}`, { // Fetch product details by ID
+        const response = await fetch(`https://secondchance-rit-hackathon-1.onrender.com/product${id}`, { // Fetch product details by ID
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`, // Include the token in the request headers

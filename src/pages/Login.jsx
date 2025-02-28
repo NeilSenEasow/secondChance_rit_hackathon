@@ -29,7 +29,7 @@ const Login = () => {
     
     try {
       console.log('Attempting login...');
-      const response = await axios.post('http://localhost:5000/login', { email, password });
+      const response = await axios.post('https://secondchance-rit-hackathon-1.onrender.com/login', { email, password });
       console.log('Login response:', response.data);
       
       // Use the login function from AuthContext

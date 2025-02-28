@@ -64,7 +64,7 @@ const AddProduct = () => {
 
       const token = localStorage.getItem('token');
 
-      const response = await fetch("http://localhost:5000/add-product", {
+      const response = await fetch("https://secondchance-rit-hackathon-1.onrender.com/add-product", {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`,

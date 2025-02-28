@@ -22,7 +22,7 @@ const Profile = () => {
   const fetchUserProducts = async (userId) => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch("http://localhost:5000/user-products", {
+      const response = await fetch("https://secondchance-rit-hackathon-1.onrender.com/user-products", {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`,
